@@ -1,0 +1,7 @@
+C:\Users\amaca\Documents\Works\RegistryAnalyzer\RegistryAnalyzer\bin\Debug\RegistryAnalyzer.exe.config
+C:\Users\amaca\Documents\Works\RegistryAnalyzer\RegistryAnalyzer\bin\Debug\RegistryAnalyzer.exe
+C:\Users\amaca\Documents\Works\RegistryAnalyzer\RegistryAnalyzer\bin\Debug\RegistryAnalyzer.pdb
+C:\Users\amaca\Documents\Works\RegistryAnalyzer\RegistryAnalyzer\obj\Debug\RegistryAnalyzer.csproj.AssemblyReference.cache
+C:\Users\amaca\Documents\Works\RegistryAnalyzer\RegistryAnalyzer\obj\Debug\RegistryAnalyzer.csproj.CoreCompileInputs.cache
+C:\Users\amaca\Documents\Works\RegistryAnalyzer\RegistryAnalyzer\obj\Debug\RegistryAnalyzer.exe
+C:\Users\amaca\Documents\Works\RegistryAnalyzer\RegistryAnalyzer\obj\Debug\RegistryAnalyzer.pdb
