@@ -8,15 +8,13 @@ namespace RegistryAnalyzer
     {
         private static void Main(string[] args)
         {
-      
-
             try
             {
-                RegistryKeyData registryKeyData = RegistryHelper.isValidRegistryKey(Registry.CurrentUser, "Software\\Microsoft\\Windows NT\\CurrentVersion\\AppCompatFlags\\Compatibility Assistant\\Store");       
-                
+                RegistryKeyData registryKeyData = RegistryHelper.isValidRegistryKey(Registry.CurrentUser, "Software\\Microsoft\\Windows NT\\CurrentVersion\\AppCompatFlags\\Compatibility Assistant\\Store");
+
                 foreach (var key in registryKeyData.KeyFilePath)
                 {
-                    Console.WriteLine(key);
+                    VirusTotalHelper.CheckFile(key).GetAwaiter().GetResult();
                 }
             }
             catch (Exception ex)
