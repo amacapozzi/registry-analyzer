@@ -48,7 +48,6 @@ namespace RegistryAnalyzer.Helpers
                 foreach (var c in regKey.GetValueNames())
                 {
                     if (String.IsNullOrEmpty(c)) continue;
-                    Console.WriteLine("Bytes added {0}", c.Length);
                     filePath.Add(c.ToString());
                 }
             }

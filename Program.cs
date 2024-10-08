@@ -1,11 +1,18 @@
 ﻿using Microsoft.Win32;
 using RegistryAnalyzer.Helpers;
 using System;
+using System.IO;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace RegistryAnalyzer
 {
     internal class Program
     {
+
+        public static SHA256 sHA256 = SHA256Managed.Create();
+
+        public static string GetHash(byte[] fileBytes) => BitConverter.ToString(sHA256.ComputeHash(fileBytes)).Replace("-", "").ToLowerInvariant();
         private static void Main(string[] args)
         {
             try
@@ -14,6 +21,7 @@ namespace RegistryAnalyzer
 
                 foreach (var key in registryKeyData.KeyFilePath)
                 {
+                    if (!File.Exists(key)) continue;
                     VirusTotalHelper.CheckFile(key).GetAwaiter().GetResult();
                 }
             }
@@ -24,5 +32,7 @@ namespace RegistryAnalyzer
 
             Console.ReadKey();
         }
+
+ 
     }
 }

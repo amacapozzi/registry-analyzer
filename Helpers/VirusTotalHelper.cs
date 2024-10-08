@@ -17,12 +17,6 @@ namespace RegistryAnalyzer.Helpers
 
         public static async Task CheckFile(string filePath)
         {
-            if (!File.Exists(filePath))
-            {
-                Console.WriteLine("{0} No exists", Path.GetFileName(filePath));
-                return;
-            }
-
             using (var multipartFormDataContent = new MultipartFormDataContent())
             {
                 var fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read);
@@ -33,12 +27,21 @@ namespace RegistryAnalyzer.Helpers
 
                 if (response.IsSuccessStatusCode)
                 {
-                    Console.WriteLine(response.Content.ReadAsStringAsync().Result);
+                    GetFileReportByHash(Program.GetHash(File.ReadAllBytes(filePath))).GetAwaiter().GetResult();
                 }
                 else
                 {
                     Console.WriteLine($"Failed to send file {response.StatusCode}");
                 }
+            }
+        }
+
+        private static async Task GetFileReportByHash(string hash)
+        {
+            using (HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, $"https://www.virustotal.com/api/v3/files/{hash}"))
+            {
+                HttpResponseMessage response = await httpClient.SendAsync(request);
+                Console.WriteLine(response.Content.ReadAsStringAsync().Result);
             }
         }
     }
