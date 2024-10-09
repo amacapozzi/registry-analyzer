@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using RegistryAnalyzer.Structs;
+using System;
 using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -31,17 +33,18 @@ namespace RegistryAnalyzer.Helpers
                 }
                 else
                 {
-                    Console.WriteLine($"Failed to send file {response.StatusCode}");
+                    Console.WriteLine($"Failed to send filec {response.StatusCode}");
                 }
             }
         }
 
-        private static async Task GetFileReportByHash(string hash)
+        private static async Task<FileResult.FileResultData> GetFileReportByHash(string hash)
         {
             using (HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, $"https://www.virustotal.com/api/v3/files/{hash}"))
             {
                 HttpResponseMessage response = await httpClient.SendAsync(request);
-                Console.WriteLine(response.Content.ReadAsStringAsync().Result);
+                FileResult.FileResultData fileData = JsonConvert.DeserializeObject<FileResult.FileResultData>(response.Content.ReadAsStringAsync().Result);
+                return fileData;
             }
         }
     }
