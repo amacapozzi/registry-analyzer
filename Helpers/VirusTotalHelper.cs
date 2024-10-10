@@ -29,11 +29,12 @@ namespace RegistryAnalyzer.Helpers
 
                 if (response.IsSuccessStatusCode)
                 {
-                    GetFileReportByHash(Program.GetHash(File.ReadAllBytes(filePath))).GetAwaiter().GetResult();
+                    FileResult.FileResultData fileResult = GetFileReportByHash(Program.GetHash(File.ReadAllBytes(filePath))).GetAwaiter().GetResult();
+                    LogHelper.SaveLog(new LogData(Path.GetFileName(filePath), fileResult.data));
                 }
                 else
                 {
-                    Console.WriteLine($"Failed to send filec {response.StatusCode}");
+                    Console.WriteLine($"Failed to send file {response.StatusCode}");
                 }
             }
         }
