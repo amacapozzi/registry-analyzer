@@ -1,30 +1,17 @@
 ﻿using Microsoft.Win32;
+using RegistryAnalyzer.Structs;
 using System;
 using System.Collections.Generic;
 
 namespace RegistryAnalyzer.Helpers
 {
-    public class RegistryKeyData
-    {
-        public string KeyName { get; set; }
-
-        public List<string> KeyFilePath { get; set; }
-
-        public string RegistryFullPath { get; set; }
-
-        public RegistryKeyData(string KeyName, string RegistryFullPath, List<string> KeyFilePath)
-        {
-            this.KeyName = KeyName;
-            this.RegistryFullPath = RegistryFullPath;
-            this.KeyFilePath = KeyFilePath;
-        }
-    }
+  
 
     internal class RegistryHelper
     {
         private static List<string> filePath = new List<string>();
 
-        public static RegistryKeyData isValidRegistryKey(RegistryKey key, string registryPath)
+        public static RegistryData.RegistryKeyData isValidRegistryKey(RegistryKey key, string registryPath)
         {
             if (String.IsNullOrEmpty(registryPath))
             {
@@ -52,7 +39,7 @@ namespace RegistryAnalyzer.Helpers
                 }
             }
 
-            return new RegistryKeyData(key.ToString(), registryPath, filePath);
+            return new RegistryData.RegistryKeyData(key.ToString(), registryPath, filePath);
         }
     }
 }

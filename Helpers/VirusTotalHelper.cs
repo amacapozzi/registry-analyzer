@@ -30,7 +30,7 @@ namespace RegistryAnalyzer.Helpers
                 if (response.IsSuccessStatusCode)
                 {
                     FileResult.FileResultData fileResult = GetFileReportByHash(Program.GetHash(File.ReadAllBytes(filePath))).GetAwaiter().GetResult();
-                    LogHelper.SaveLog(new LogData(Path.GetFileName(filePath), fileResult.data));
+                    LogHelper.SaveLog(new Log.LogData(Path.GetFileName(filePath), fileResult.data));
                 }
                 else
                 {

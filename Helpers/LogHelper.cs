@@ -1,26 +1,16 @@
-﻿using System;
+﻿using RegistryAnalyzer.Structs;
+using System;
 using System.Collections.Generic;
 using System.IO;
 
 namespace RegistryAnalyzer.Helpers
 {
-    public class LogData
-    {
-        public string FileName { get; set; }
-        public object FileResult { get; set; }
-
-        public LogData(string fileName, object fileResult)
-        {
-            FileName = fileName;
-            FileResult = fileResult;
-        }
-    }
-
+  
     internal class LogHelper
     {
         private static readonly string LogFilePath = "virus.log";
 
-        public static void SaveLog(LogData logData)
+        public static void SaveLog(Log.LogData logData)
         {
             List<string> dataList = new List<string>();
 
@@ -39,7 +29,7 @@ namespace RegistryAnalyzer.Helpers
             File.WriteAllText(LogFilePath, string.Join(Environment.NewLine, dataList));
         }
 
-        private static string CreateLogEntry(LogData logData)
+        private static string CreateLogEntry(Log.LogData logData)
         {
             return $@"
 === {logData.FileName} ===
